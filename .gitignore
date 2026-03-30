@@ -1,0 +1,227 @@
+# ===========================================
+# 환경 변수 및 민감한 정보
+# ===========================================
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+secrets/
+*.pem
+*.key
+*.crt
+*.p12
+
+# ===========================================
+# 의존성 (Dependencies)
+# ===========================================
+node_modules/
+/backend/node_modules/
+/web/node_modules/
+jspm_packages/
+bower_components/
+
+# ===========================================
+# 빌드 결과물 (Build Output)
+# ===========================================
+# Backend (NestJS)
+/backend/dist/
+/backend/build/
+
+# Frontend (Next.js)
+/web/.next/
+/web/out/
+/web/build/
+/web/.vercel/
+
+# 기타
+*.log
+*.out
+
+# ===========================================
+# IDE 및 에디터
+# ===========================================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ===========================================
+# 운영체제
+# ===========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ===========================================
+# 테스트 및 커버리지
+# ===========================================
+coverage/
+.nyc_output/
+*.lcov
+.pytest_cache/
+htmlcov/
+.tox/
+
+# ===========================================
+# 데이터베이스
+# ===========================================
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+/postgres-data/
+/redis-data/
+
+# ===========================================
+# 로그 파일
+# ===========================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pnpm-debug.log*
+
+# ===========================================
+# 임시 파일
+# ===========================================
+tmp/
+temp/
+*.tmp
+*.temp
+.cache/
+
+# ===========================================
+# 패키지 관리자
+# ===========================================
+# Yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# npm
+package-lock.json
+npm-debug.log
+
+# pnpm
+pnpm-lock.yaml
+
+# ===========================================
+# Docker
+# ===========================================
+docker-compose.override.yml
+.docker/
+
+# ===========================================
+# 클라우드 서비스 설정
+# ===========================================
+# AWS
+.aws/
+aws-exports.js
+
+# Google Cloud
+gcs-key.json
+google-credentials.json
+
+# Firebase
+firebase-debug.log
+.firebase/
+
+# ===========================================
+# MCP (Model Context Protocol)
+# ===========================================
+# MCP는 포함하되, 민감한 정보는 제외
+# .mcp/config.json은 템플릿으로 포함
+# 실제 토큰/비밀번호는 환경 변수로 관리
+
+# ===========================================
+# 백업 및 임시 저장소
+# ===========================================
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+
+# ===========================================
+# 압축 파일
+# ===========================================
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# ===========================================
+# 미디어 파일 (대용량)
+# ===========================================
+# 필요시 Git LFS 사용 권장
+# uploads/
+# assets/videos/
+
+# ===========================================
+# 문서 생성 결과물
+# ===========================================
+/docs/.vuepress/dist
+/docs/dist
+*.pdf
+*.docx
+
+# ===========================================
+# Storybook
+# ===========================================
+storybook-static/
+
+# ===========================================
+# 성능 측정
+# ===========================================
+.eslintcache
+*.tsbuildinfo
+
+# ===========================================
+# 프로젝트별 예외 처리
+# ===========================================
+# 포함해야 할 설정 파일들
+!.mcp/config.json
+!.mcp/README.md
+!.env.example
+!.vscode/settings.json
+!.github/

@@ -1,0 +1,50 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/haeyoung/next_gen_01"
+      ],
+      "description": "프로젝트 파일 시스템 접근"
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git",
+        "--repository",
+        "/Users/haeyoung/next_gen_01"
+      ],
+      "description": "Git 저장소 작업"
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://localhost:5432/kmtls_groupware"
+      ],
+      "description": "PostgreSQL 데이터베이스 접근",
+      "env": {
+        "PGPASSWORD": "${POSTGRES_PASSWORD}"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github",
+        "--owner",
+        "cogito0208",
+        "--repo",
+        "next-gen"
+      ],
+      "description": "GitHub 저장소 연동",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
+  }
+}
