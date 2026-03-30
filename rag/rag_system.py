@@ -14,7 +14,7 @@ from datetime import datetime
 
 from langchain_community.document_loaders import DirectoryLoader, UnstructuredMarkdownLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from dotenv import load_dotenv
 
@@ -28,17 +28,24 @@ class SkillsRAG:
         self.skills_dir = Path(skills_dir)
         self.db_dir = Path(db_dir)
         self.checksums_file = Path("./.rag/checksums.json")
-
-        # 한국어 지원이 우수한 무료 임베딩 모델 사용
-        self.embeddings = HuggingFaceEmbeddings(
-            model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-            model_kwargs={'device': 'cpu'},
-            encode_kwargs={'normalize_embeddings': True}
-        )
+        self._embeddings = None  # Lazy loading
 
         # 디렉토리 생성
         self.db_dir.parent.mkdir(parents=True, exist_ok=True)
         self.db_dir.mkdir(parents=True, exist_ok=True)
+
+    @property
+    def embeddings(self):
+        """임베딩 모델을 lazy loading"""
+        if self._embeddings is None:
+            print("🔮 임베딩 모델 로딩 중... (최초 1회만, 약 10초 소요)")
+            self._embeddings = HuggingFaceEmbeddings(
+                model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+                model_kwargs={'device': 'cpu'},
+                encode_kwargs={'normalize_embeddings': True}
+            )
+            print("✅ 임베딩 모델 로드 완료\n")
+        return self._embeddings
 
     def calculate_file_hash(self, filepath: Path) -> str:
         """파일의 MD5 해시 계산"""
