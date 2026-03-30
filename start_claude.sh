@@ -80,14 +80,6 @@ check_environment() {
     fi
     echo -e "${GREEN}✅ ANTHROPIC_API_KEY 확인됨${NC}"
 
-    if [ -z "$OPENAI_API_KEY" ]; then
-        echo -e "${YELLOW}⚠️  OPENAI_API_KEY가 설정되지 않았습니다.${NC}"
-        echo -e "${YELLOW}   RAG 임베딩에 필요합니다. .env에 추가하세요:${NC}"
-        echo -e "${YELLOW}   OPENAI_API_KEY=your_api_key_here${NC}"
-        exit 1
-    fi
-    echo -e "${GREEN}✅ OPENAI_API_KEY 확인됨${NC}"
-
     echo ""
 }
 

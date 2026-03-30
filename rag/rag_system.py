@@ -12,10 +12,10 @@ from pathlib import Path
 from typing import List, Dict
 from datetime import datetime
 
-from langchain.document_loaders import DirectoryLoader, UnstructuredMarkdownLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.document_loaders import DirectoryLoader, UnstructuredMarkdownLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import Chroma
 from dotenv import load_dotenv
 
 # 환경 변수 로드
@@ -28,7 +28,13 @@ class SkillsRAG:
         self.skills_dir = Path(skills_dir)
         self.db_dir = Path(db_dir)
         self.checksums_file = Path("./.rag/checksums.json")
-        self.embeddings = OpenAIEmbeddings()
+
+        # 한국어 지원이 우수한 무료 임베딩 모델 사용
+        self.embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+            model_kwargs={'device': 'cpu'},
+            encode_kwargs={'normalize_embeddings': True}
+        )
 
         # 디렉토리 생성
         self.db_dir.parent.mkdir(parents=True, exist_ok=True)
@@ -120,7 +126,7 @@ class SkillsRAG:
 
         # 4. 벡터 DB 생성
         print("\n🔮 벡터 임베딩 생성 및 DB 저장 중...")
-        print("   (OpenAI API 사용 - 약 30초 소요)")
+        print("   (로컬 임베딩 모델 사용 - 약 1분 소요)")
 
         vectordb = Chroma.from_documents(
             documents=chunks,
